@@ -19,10 +19,12 @@
             <!-- Vote Average -->
             <li>
                 <strong>Vote Average: </strong>{{info.vote_average}}/10
-                <i v-for="(num, index) in Math.round(info.vote_average / 2)" :key="index" class="fas fa-star"></i>
-                <i v-for="(num, index) in 5 - Math.round(info.vote_average / 2)" :key="index" class="far fa-star"></i>
+                <i v-for="(num, index) in Math.floor(info.vote_average / 2)" :key="'full' + index" class="fas fa-star"></i>
+                <i v-show="((info.vote_average / 2) - Math.floor(info.vote_average / 2) > .49)" class="fas fa-star-half-alt"></i>
+                <i v-for="(num, index) in 5 - Math.round(info.vote_average / 2)" :key="'empty' + index" class="far fa-star"></i>
                 {{(info.vote_average / 2)}}
             </li>
+            <!--  -->
         </ul>
     </div>
 </template>

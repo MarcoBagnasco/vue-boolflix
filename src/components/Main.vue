@@ -4,7 +4,7 @@
         <section class="movies">
             <h2>Movies</h2>
             <ol class="movies-list">
-                <li v-for="(item, index) in movies" :key="index">
+                <li v-for="item in movies" :key="item.id">
                     <Card :info="item"/>
                 </li>
             </ol>
@@ -14,7 +14,7 @@
         <section class="movies">
             <h2>TV Shows</h2>
             <ol class="tv-list">
-                <li v-for="(item, index) in tv" :key="index">
+                <li v-for="item in tv" :key="item.id">
                     <Card :info="item"/>
                 </li>
             </ol>
