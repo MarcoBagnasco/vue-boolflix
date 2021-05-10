@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-      <!-- APP HEADER -->
-      <Header @searchMovie="searchMovie"/>
+    <!-- APP HEADER -->
+    <Header @searchMovie="searchMovie"/>
 
-      <!-- APP MAIN -->
-      <Main :movies="moviesList" :tv="tvList"/>
+    <!-- APP MAIN -->
+    <Main :movies="moviesList" :tv="tvList"/>
   </div>
 </template>
 
