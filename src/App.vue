@@ -4,7 +4,7 @@
       <Header @searchMovie="searchMovie"/>
 
       <!-- APP MAIN -->
-      <Main :movies="results"/>
+      <Main :movies="moviesList" :tv="tvList"/>
   </div>
 </template>
 
@@ -22,20 +22,35 @@ export default {
   },
   data(){
     return {
-      results: [],
+      moviesList: [],
+      tvList: [],
     }
   },
   methods:{
-    searchMovie(movie){
-      // Call API
+    searchMovie(search){
+      // Call API Movies
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: 'dabed2596a83196385f10dd2ac69a20d',
-          query: movie,
+          query: search,
         }
       })
       .then(res => {
-        this.results = res.data.results;
+        this.moviesList = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      // Call API TV Shows
+      axios.get('https://api.themoviedb.org/3/search/tv', {
+        params: {
+          api_key: 'dabed2596a83196385f10dd2ac69a20d',
+          query: search,
+        }
+      })
+      .then(res => {
+        this.tvList = res.data.results;
       })
       .catch(err => {
         console.log(err);
