@@ -5,7 +5,7 @@
         <div class="list-box">
             <ul class="movies-list flex ai-center">
                 <li v-for="item in list" :key="item.id">
-                    <Card :info="item"/>
+                    <Card :info="item" @getInfo="sendInfo"/>
                 </li>
             </ul>
         </div>
@@ -24,6 +24,17 @@ export default {
     props: {
         title: String,
         list: Array,
+    },
+    data(){
+        return{
+            details: {},
+        }
+    },
+    methods: {
+        sendInfo(obj){
+            this.details = obj;
+            this.$emit('getDetails', this.details)
+        }
     }
 }
 </script>
@@ -42,7 +53,7 @@ export default {
 
             ul{
                 margin-top: 25px;
-                
+
                 li{
                     width: 342px;
                     margin: 0 5px;

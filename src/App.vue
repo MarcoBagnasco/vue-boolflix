@@ -4,7 +4,7 @@
     <Header @search="searchTitle"/>
 
     <!-- APP MAIN -->
-    <Main :movies="moviesList" :tv="tvList"/>
+    <Main :movies="moviesList" :tv="tvList" :popMovies="popularMovies" :popTV="popularTV" :upcome="up"/>
   </div>
 </template>
 
@@ -26,9 +26,57 @@ export default {
     return {
       moviesList: [],
       tvList: [],
+      popularMovies: [],
+      popularTV: [],
+      up: [],
     }
   },
+  created(){
+    this.popularTitle();
+    this.upcoming();
+  },
   methods:{
+    upcoming(){
+            // Call API Movies
+      axios.get('https://api.themoviedb.org/3/movie/upcoming', {
+        params: {
+          api_key: 'dabed2596a83196385f10dd2ac69a20d',
+        }
+      })
+      .then(res => {
+        this.up = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    },
+    popularTitle(){
+      // Call API Movies
+      axios.get('https://api.themoviedb.org/3/movie/popular', {
+        params: {
+          api_key: 'dabed2596a83196385f10dd2ac69a20d',
+        }
+      })
+      .then(res => {
+        this.popularMovies = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      // Call API TV Shows
+      axios.get('https://api.themoviedb.org/3/tv/popular', {
+        params: {
+          api_key: 'dabed2596a83196385f10dd2ac69a20d',
+        }
+      })
+      .then(res => {
+        this.popularTV = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    },
     searchTitle(search){
       // Call API Movies
       axios.get('https://api.themoviedb.org/3/search/movie', {

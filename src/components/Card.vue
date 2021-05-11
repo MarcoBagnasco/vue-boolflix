@@ -1,7 +1,7 @@
 <template>
-    <div class="card">
+    <div class="card" @click="$emit('getInfo', info)">
         <!-- Poster -->
-        <img :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" :alt="info.original_title">
 
         <!-- Info -->
         <ul class="info">
