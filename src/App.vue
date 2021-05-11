@@ -9,8 +9,10 @@
 </template>
 
 <script>
+// AXIOS
 import axios from 'axios';
 
+// COMPONENTS
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
 

@@ -15,8 +15,32 @@ body{
     color: $txt-primary-color;
     background-color: $bg-dark;
 }
+h2{
+    font-size: 1.8em;
+}
 ul{
     list-style: none;
+}
+
+// Scroolbar
+::-webkit-scrollbar{
+    height: 15px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba($red-brand, .5); 
+    border-radius: 10px;
+    
+    &:hover{
+        background: $red-brand; 
+    }
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(#fff, .1); 
+    border-radius: 10px;
+
+    &:Hover{
+        box-shadow: inset 0 0 5px rgba(#fff, .3);
+    }
 }
 
 // UTILITIES

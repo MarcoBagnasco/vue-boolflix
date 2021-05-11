@@ -26,6 +26,7 @@
                 'half-star' : (index + 1) === (Math.ceil(info.vote_average / 2)) && ((info.vote_average / 2) - Math.floor(info.vote_average / 2) > .49)}"></i>
                 {{info.vote_average}}/10
             </li>
+            <!-- Overview -->
             <li><strong>Overview:</strong> {{info.overview}}</li>
         </ul>
     </div>
@@ -41,6 +42,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// SCSS VARIABLES
+@import '../Styles/variables.scss';
+
     .card{
         position: relative;
         width: 100%;
@@ -65,18 +69,25 @@ export default {
             li{
                 margin-bottom: 10px;
                 
+                strong{
+                    margin-right: 5px;
+                    font-size: 1.2rem;
+                    text-decoration: underline;
+                }
+
                 .flag{
                     height: 14px;
                 }
             }
         }
         
+        // Stars
         .star{
             position: relative;
             color: #777;
         }
         .full-star{
-            color: #dc1a28;
+            color: $red-brand;
         }
         .half-star::after{
             position: absolute;
@@ -85,12 +96,7 @@ export default {
             content: "\f089";
             font-family: "Font Awesome 5 Free"; 
             font-weight: 900; 
-            color: #dc1a28;
-        }
-        strong{
-            margin-right: 5px;
-            font-size: 1.2rem;
-            text-decoration: underline;
+            color: $red-brand
         }
     }
 </style>
