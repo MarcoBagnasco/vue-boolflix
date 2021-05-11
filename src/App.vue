@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- APP HEADER -->
-    <Header @searchMovie="searchMovie"/>
+    <Header @search="searchTitle"/>
 
     <!-- APP MAIN -->
     <Main :movies="moviesList" :tv="tvList"/>
@@ -27,7 +27,7 @@ export default {
     }
   },
   methods:{
-    searchMovie(search){
+    searchTitle(search){
       // Call API Movies
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
@@ -61,5 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
+// GENERAL
+@import './Styles/General.scss';
 
 </style>
