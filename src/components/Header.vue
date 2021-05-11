@@ -31,11 +31,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// SCSS VARIABLES
+@import '../Styles/variables.scss';
+
     header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         padding: 20px 40px;
-        background-color: #181818;
+        background: linear-gradient(180deg, rgba(24,24,24,1) 0%, rgba(24,24,24,0.8575805322128851) 24%, rgba(24,24,24,0.7287289915966386) 43%, rgba(24,24,24,0.4990371148459384) 67%, rgba(24,24,24,0) 100%);
+
+        z-index: 10;
+
         img{
-            width: 200px;
+            width: 230px;
         }
     }
 </style>

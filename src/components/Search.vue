@@ -3,7 +3,7 @@
         <button class="search-btn" type="submit" @click.prevent="$emit('searching', searchText)">
             <i class="fas fa-search"></i>
         </button>
-        <input v-model="searchText" type="text" name="search" id="search">
+        <input v-model="searchText" type="text" name="search" id="search" placeholder="Search Title">
     </form>
 </template>
 
@@ -19,18 +19,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// SCSS VARIABLES
+@import '../Styles/variables.scss';
+
     input[type="text"],
     .search-btn{
-        height: 1.5rem;
+        height: 2rem;
         padding: 0 10px;
-        color: #fff;
-        background-color: #181818;
-        border: 1px solid #fff;
+        font-size: 1rem;
+        color: $txt-primary-color;
+        background-color: $bg-dark;
+        border: 1px solid $txt-primary-color;
         outline: none;
         border-radius: 0;
 
         &:focus{
-            background-color: #333;
+            background-color: #303030;
         }
     }
     .search-btn{
@@ -39,5 +43,9 @@ export default {
     }
     input[type="text"]{
         border-left: 0;
+
+        &::placeholder{
+            color: #888;
+        }
     }
 </style>

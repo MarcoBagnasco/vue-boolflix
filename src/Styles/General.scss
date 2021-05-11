@@ -1,3 +1,6 @@
+// SCSS VARIABLES
+@import './variables.scss';
+
 // GENERAL
 *{
     margin: 0;
@@ -5,7 +8,15 @@
     box-sizing: border-box;
 }
 body{
+    min-height: 100vh;
+    padding-top: 130px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: $txt-primary-color;
+    background-color: $bg-dark;
+}
+ul{
+    list-style: none;
 }
 
 // UTILITIES
