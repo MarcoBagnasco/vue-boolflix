@@ -50,6 +50,8 @@ export default {
     },
     data(){
         return{
+            apiURL: 'https://api.themoviedb.org/3/',
+            api_key: 'dabed2596a83196385f10dd2ac69a20d',
             reviews: [],
             images: [],
             videos: [],
@@ -59,12 +61,16 @@ export default {
         this.getMoreInfo();
     },
     methods: {
+        /**
+         * Get Reviews, Images and Videos
+         */
         getMoreInfo(){
+            const apiParams = {
+                api_key: this.api_key,
+            }
             // Call API Movies Reviews
-            axios.get(`https://api.themoviedb.org/3/movie/${this.details.id}/reviews`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}movie/${this.details.id}/reviews`, {
+                params: apiParams,
             })
             .then(res => {
                 this.reviews = res.data.results;
@@ -73,10 +79,8 @@ export default {
                 console.log(err);
             });
             // Call API TV Reviews
-            axios.get(`https://api.themoviedb.org/3/tv/${this.details.id}/reviews`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}tv/${this.details.id}/reviews`, {
+                params: apiParams,
             })
             .then(res => {
                 this.reviews = res.data.results;
@@ -86,10 +90,8 @@ export default {
             });
 
             // Call API Movies Images
-            axios.get(`https://api.themoviedb.org/3/movie/${this.details.id}/images`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}movie/${this.details.id}/images`, {
+                params: apiParams,
             })
             .then(res => {
                 this.images = res.data.backdrops;
@@ -98,10 +100,8 @@ export default {
                 console.log(err);
             });
             // Call API TV Images
-            axios.get(`https://api.themoviedb.org/3/tv/${this.details.id}/images`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}tv/${this.details.id}/images`, {
+                params: apiParams,
             })
             .then(res => {
                 this.images = res.data.backdrops;
@@ -111,10 +111,8 @@ export default {
             });
 
             // Call API Movies Videos
-            axios.get(`https://api.themoviedb.org/3/movie/${this.details.id}/videos`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}movie/${this.details.id}/videos`, {
+                params: apiParams,
             })
             .then(res => {
                 this.videos = res.data.results;
@@ -123,10 +121,8 @@ export default {
                 console.log(err);
             });
             // Call API TV Videos
-            axios.get(`https://api.themoviedb.org/3/tv/${this.details.id}/videos`, {
-                params: {
-                    api_key: 'dabed2596a83196385f10dd2ac69a20d',
-                }
+            axios.get(`${this.apiURL}tv/${this.details.id}/videos`, {
+                params: apiParams,
             })
             .then(res => {
                 this.videos = res.data.results;

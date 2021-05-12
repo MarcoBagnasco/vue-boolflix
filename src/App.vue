@@ -24,6 +24,8 @@ export default {
   },
   data(){
     return {
+      apiURL: 'https://api.themoviedb.org/3/',
+      api_key: 'dabed2596a83196385f10dd2ac69a20d',
       moviesList: [],
       tvList: [],
       popularMovies: [],
@@ -36,12 +38,16 @@ export default {
     this.upcoming();
   },
   methods:{
+    /**
+     * Call API for upcoming title
+     */
     upcoming(){
-            // Call API Movies
+      const apiParams = {
+        api_key: this.api_key,
+      }
+      // Call API Upcoming Movies
       axios.get('https://api.themoviedb.org/3/movie/upcoming', {
-        params: {
-          api_key: 'dabed2596a83196385f10dd2ac69a20d',
-        }
+        params: apiParams,
       })
       .then(res => {
         this.up = res.data.results;
@@ -50,12 +56,17 @@ export default {
         console.log(err);
       });
     },
+
+    /**
+     * Call API for popular title
+     */
     popularTitle(){
-      // Call API Movies
+      const apiParams = {
+        api_key: this.api_key,
+      }
+      // Call API Popular Movies
       axios.get('https://api.themoviedb.org/3/movie/popular', {
-        params: {
-          api_key: 'dabed2596a83196385f10dd2ac69a20d',
-        }
+        params: apiParams,
       })
       .then(res => {
         this.popularMovies = res.data.results;
@@ -64,11 +75,9 @@ export default {
         console.log(err);
       });
 
-      // Call API TV Shows
+      // Call API Popular TV Shows
       axios.get('https://api.themoviedb.org/3/tv/popular', {
-        params: {
-          api_key: 'dabed2596a83196385f10dd2ac69a20d',
-        }
+        params: apiParams,
       })
       .then(res => {
         this.popularTV = res.data.results;
@@ -77,13 +86,18 @@ export default {
         console.log(err);
       });
     },
+
+    /**
+     * Call API based on search
+     */
     searchTitle(search){
+      const apiParams = {
+        api_key: this.api_key,
+        query: search,
+      }
       // Call API Movies
       axios.get('https://api.themoviedb.org/3/search/movie', {
-        params: {
-          api_key: 'dabed2596a83196385f10dd2ac69a20d',
-          query: search,
-        }
+        params: apiParams,
       })
       .then(res => {
         this.moviesList = res.data.results;
@@ -94,10 +108,7 @@ export default {
 
       // Call API TV Shows
       axios.get('https://api.themoviedb.org/3/search/tv', {
-        params: {
-          api_key: 'dabed2596a83196385f10dd2ac69a20d',
-          query: search,
-        }
+        params: apiParams,
       })
       .then(res => {
         this.tvList = res.data.results;

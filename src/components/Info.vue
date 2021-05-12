@@ -7,8 +7,7 @@
             <!-- Language -->
             <li>
                 <strong>Language:</strong> 
-                <img class="flag" v-if="info.original_language === 'en'" src="../assets/img/en.png" alt="en flag">
-                <img class="flag" v-else-if="info.original_language === 'it'" src="../assets/img/it.png" alt="en flag">
+                <img class="flag" v-if="languageFlag.includes(info.original_language)" :src="require(`../assets/img/${info.original_language}.png`)" :alt="info.original_language">
                 <span v-else>{{info.original_language}}</span>
             </li>
             <!-- Vote Average -->
@@ -31,6 +30,11 @@ export default {
     name: 'Info',
     props: {
         info: Object,
+    },
+    data(){
+        return{
+            languageFlag: ['en','it'],
+        }
     }
 }
 </script>

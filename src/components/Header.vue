@@ -23,6 +23,9 @@ export default {
         }
     },
     methods: {
+        /**
+         * Emit search text
+         */
         setSearch(text){
             this.searchText = text;
             this.$emit('search', this.searchText)

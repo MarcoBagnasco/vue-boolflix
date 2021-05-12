@@ -2,6 +2,7 @@
     <main>
         <!-- UPCOMING -->
         <ListSection v-show="movies.length === 0 && tv.length === 0" :title="'Upcoming Movies'" :list="upcome" @getDetails="showDetails"/>
+
         <!-- POPULAR MOVIE -->
         <ListSection v-show="movies.length === 0 && tv.length === 0" :title="'Popular Movies'" :list="popMovies" @getDetails="showDetails"/>
 
@@ -44,10 +45,17 @@ export default {
         }
     },
     methods: {
+        /**
+         * Show Details Window
+         */
         showDetails(obj){
             this.details = obj;
             this.detailsVisibility = true;
         },
+
+        /**
+         * Close Details Window
+         */
         closeDetails(){
             this.detailsVisibility = false;
         },

@@ -2,8 +2,10 @@
     <div class="list-section">
         <h2>{{title}}</h2>
 
+        <!-- TITLE LIST -->
         <div class="list-box">
             <ul class="movies-list flex ai-center">
+                <!-- CARD -->
                 <li v-for="item in list" :key="item.id">
                     <Card :info="item" @getInfo="sendInfo"/>
                 </li>
@@ -31,6 +33,9 @@ export default {
         }
     },
     methods: {
+        /**
+         * Emit details
+         */
         sendInfo(obj){
             this.details = obj;
             this.$emit('getDetails', this.details)
