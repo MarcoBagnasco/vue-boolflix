@@ -1,8 +1,11 @@
 <template>
     <header class="flex jc-between ai-center">
         <!-- Logo -->
-        <img src="https://fontmeme.com/permalink/210511/c072857f28ffed69c9266a55183f4c20.png" alt="logo">
-
+        <nav class="flex ai-center">
+            <img src="https://fontmeme.com/permalink/210511/c072857f28ffed69c9266a55183f4c20.png" alt="logo">
+            <div class="home" @click="$emit('clear')">Home</div>
+            <div class="my-list" @click="$emit('showMy')">My List</div>
+        </nav>
         <!-- Search Input -->
         <Search @searching="setSearch"/>
     </header>
@@ -49,6 +52,11 @@ export default {
 
         img{
             width: 230px;
+        }
+        .home,
+        .my-list{
+            margin: 0 15px;
+            cursor: pointer;
         }
     }
 </style>

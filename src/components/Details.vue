@@ -13,12 +13,16 @@
             </div>
             
             <!-- Trailer -->
-            <div class="trailer" v-if="videos.length !== 0">
-                Watch the <span @click="watchTrailer">Trailer</span>
-                <!-- Video -->
-                <div v-show="showVideo" class="video-box flex jc-center ai-center" @click="watchTrailer">
-                    <Video :title="videos[0].key" />
+            <div class="flex ai-center">
+                <div class="trailer" v-if="videos.length !== 0">
+                    Watch the <span @click="watchTrailer">Trailer</span>
+                    <!-- Video -->
+                    <div v-show="showVideo" class="video-box flex jc-center ai-center" @click="watchTrailer">
+                        <Video :title="videos[0].key" />
+                    </div>
                 </div>
+                <div v-if="!my.includes(details)" class="add-to-list" @click="$emit('toAdding', details)"><i class="fas fa-plus"></i> Add to My List</div>
+                <div v-else class="add-to-list" @click="$emit('toRemove', details)"><i class="fas fa-minus"></i> Remove from My List</div>
             </div>
 
             <!-- Reviews -->
@@ -51,6 +55,7 @@ export default {
     name: 'Details',
     props: {
         details: Object,
+        my: Array,
     },
     components: {
         Info,
@@ -167,11 +172,12 @@ export default {
         .details-box{
             position: relative;
             width: 55%;
+            max-height: 99vh;
             margin: 30px 0;
             padding: 20px;
             background-color: $bg-dark;
             border-radius: 20px;
-            overflow: hidden;
+            overflow: auto;
 
             .exit{
                 position: absolute;
@@ -196,6 +202,7 @@ export default {
             // Trailers
             .trailer{
                 margin-top: 10px;
+                margin-right: 80px;
 
                 span{
                     color: $red-brand;
@@ -210,6 +217,17 @@ export default {
                     width: 100%;
                     height: 100%;
                     background-color: rgba(#000, .7);
+                }
+            }
+
+            // Add List
+            .add-to-list{
+                margin-top: 10px;
+                cursor: pointer;
+                transition: color .3s;
+
+                &:hover{
+                    color: $red-brand;
                 }
             }
 

@@ -1,7 +1,7 @@
 <template>
     <div class="card" @click="$emit('getInfo', info)">
         <!-- Poster -->
-        <img :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" :alt="info.original_title">
+        <img :src="`https://image.tmdb.org/t/p/w${imgWidth}${info.poster_path}`" :alt="info.original_title">
 
         <!-- Info -->
         <Info :info="info" />
@@ -20,6 +20,7 @@ export default {
     },
     props: {
         info: Object,
+        imgWidth: Number,
     },
 }
 </script>
@@ -32,6 +33,7 @@ export default {
         position: relative;
         width: 100%;
         color: #fff;
+        cursor: pointer;
 
         &:hover .info{
             opacity: 1;

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <!-- APP HEADER -->
-    <Header @search="searchTitle"/>
+    <Header @search="searchTitle" @clear="clearPage" @showMy="showMyList"/>
 
     <!-- APP MAIN -->
-    <Main :movies="moviesList" :tv="tvList" :popMovies="popularMovies" :popTV="popularTV" :upcome="up"/>
+    <Main :movies="moviesList" :tv="tvList" :popMovies="popularMovies" :popTV="popularTV" :upcome="up" :showMy="viewMy"/>
   </div>
 </template>
 
@@ -31,6 +31,7 @@ export default {
       popularMovies: [],
       popularTV: [],
       up: [],
+      viewMy: false,
     }
   },
   created(){
@@ -38,6 +39,18 @@ export default {
     this.upcoming();
   },
   methods:{
+    showMyList(){
+      this.viewMy = true;
+    },
+    /**
+     * Reset page
+     */
+    clearPage(){
+        this.moviesList = [];
+        this.tvList = [];
+        this.viewMy = false;
+        window.scrollTo(0, 0);
+    },
     /**
      * Call API for upcoming title
      */
@@ -116,6 +129,8 @@ export default {
       .catch(err => {
         console.log(err);
       });
+
+      this.viewMy = false;
     }
   }
 }

@@ -7,7 +7,7 @@
             <ul class="movies-list flex ai-center">
                 <!-- CARD -->
                 <li v-for="item in list" :key="item.id">
-                    <Card :info="item" :imgWidth="342" @getInfo="sendInfo"/>
+                        <Card :info="item" :imgWidth="154" @getInfo="sendInfo"/>
                 </li>
             </ul>
         </div>
@@ -19,20 +19,20 @@
 import Card from '@/components/Card.vue';
 
 export default {
-    name: 'ListSection',
-    components:{
-        Card,
-    },
+    name: 'SmallList',
     props: {
         title: String,
         list: Array,
+    },
+    components:{
+        Card,
     },
     data(){
         return{
             details: {},
         }
     },
-    methods: {
+    methods:{
         /**
          * Emit details
          */
@@ -54,16 +54,17 @@ export default {
         background-color: $bg-dark-soft;
 
         .list-box{
-            overflow-x: auto;
-
             ul{
                 margin-top: 25px;
+                overflow-x: auto;
 
                 li{
-                    width: 342px;
+                    width: 154px;
                     margin: 0 5px;
+                    font-size: 0.7em;
                 }
             }
         }
     }
+
 </style>

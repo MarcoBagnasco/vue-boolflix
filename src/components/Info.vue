@@ -49,7 +49,7 @@ export default {
             
             strong{
                 margin-right: 5px;
-                font-size: 1.2rem;
+                font-size: 1.2em;
                 text-decoration: underline;
             }
 
