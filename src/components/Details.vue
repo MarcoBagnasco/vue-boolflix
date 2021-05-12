@@ -13,7 +13,13 @@
             </div>
             
             <!-- Trailer -->
-            <div class="trailer" v-if="videos.length !== 0">Watch the <a :href="`https://www.youtube.com/watch?v=${videos[0].key}`" target="_blank">Trailer</a></div>
+            <div class="trailer" v-if="videos.length !== 0">
+                Watch the <span @click="watchTrailer">Trailer</span>
+                <!-- Video -->
+                <div v-show="showVideo" class="video-box flex jc-center ai-center" @click="watchTrailer">
+                    <Video :title="videos[0].key" />
+                </div>
+            </div>
 
             <!-- Reviews -->
             <h2>Reviews</h2>
@@ -39,6 +45,7 @@ import axios from 'axios';
 
 // COMPONENTS
 import Info from '@/components/Info.vue';
+import Video from '@/components/Video.vue';
 
 export default {
     name: 'Details',
@@ -47,6 +54,7 @@ export default {
     },
     components: {
         Info,
+        Video,
     },
     data(){
         return{
@@ -55,6 +63,7 @@ export default {
             reviews: [],
             images: [],
             videos: [],
+            showVideo: false,
         }
     },
     created(){
@@ -130,6 +139,13 @@ export default {
             .catch(err => {
                 console.log(err);
             });
+        },
+
+        /**
+         * Toggle video visibility
+         */
+        watchTrailer(){
+            this.showVideo = !this.showVideo;
         }
     }
 }
@@ -176,33 +192,49 @@ export default {
                 width: 70%;
                 margin-left: 30px;
             }
-        }
-        .trailer{
-            margin-top: 10px;
-            a{
-                color: $red-brand
+            
+            // Trailers
+            .trailer{
+                margin-top: 10px;
+
+                span{
+                    color: $red-brand;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+                
+                .video-box{
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(#000, .7);
+                }
+            }
+
+            // Reviews and Images
+            h2{
+                margin-top: 20px;
+            }
+            .reviews,
+            .images{
+                height: 200px;
+                margin: 10px;
+                overflow-y: auto;
+                h4{
+                    margin-bottom: 5px;
+                    font-size: 1.3rem;
+                    text-decoration: underline;
+                }
+                .review{
+                    margin: 15px 5px;
+                }
+                img{
+                    margin: 10px;
+                }
             }
         }
 
-        h2{
-            margin-top: 20px;
-        }
-        .reviews,
-        .images{
-            height: 200px;
-            margin: 10px;
-            overflow-y: auto;
-            h4{
-                margin-bottom: 5px;
-                font-size: 1.3rem;
-                text-decoration: underline;
-            }
-            .review{
-                margin: 15px 5px;
-            }
-            img{
-                margin: 10px;
-            }
-        }
     }
 </style>
