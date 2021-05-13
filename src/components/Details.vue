@@ -7,7 +7,8 @@
             <!-- Info-Box -->
             <div class="info-box flex ai-start">
                 <!-- Poster -->
-                <img :src="`https://image.tmdb.org/t/p/w185${details.poster_path}`" :alt="details.original_title">
+                <img v-if="details.poster_path" :src="`https://image.tmdb.org/t/p/w185${details.poster_path}`" :alt="details.original_title">
+                <img v-else src="../assets/img/img_notfound_small.jpg" alt="image not found">
                 <!-- Info -->
                 <Info :info="details" />
             </div>

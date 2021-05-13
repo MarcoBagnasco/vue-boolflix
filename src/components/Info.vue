@@ -10,6 +10,7 @@
                 <img class="flag" v-if="languageFlag.includes(info.original_language)" :src="require(`../assets/img/${info.original_language}.png`)" :alt="info.original_language">
                 <span v-else>{{info.original_language}}</span>
             </li>
+            <li><strong>Release Date:</strong> {{info.release_date}}</li>
             <!-- Vote Average -->
             <li>
                 <strong>Vote Average:</strong>
