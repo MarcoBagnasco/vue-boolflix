@@ -39,6 +39,9 @@ export default {
     this.upcoming();
   },
   methods:{
+    /**
+     * Show MyList
+     */
     showMyList(){
       this.viewMy = true;
     },

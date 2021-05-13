@@ -1,7 +1,7 @@
 <template>
     <main>
         <!-- UPCOMING -->
-        <ListSection v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Upcoming Movies'" :list="upcome" @getDetails="showDetails"/>
+        <ScrollList v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Upcoming Movies'" :list="upcome" @getDetails="showDetails"/>
 
         <!-- POPULAR MOVIE -->
         <SmallList v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Popular Movies'" :list="popMovies" @getDetails="showDetails"/>
@@ -30,6 +30,7 @@
 import ListSection from '@/components/ListSection.vue';
 import Details from '@/components/Details.vue';
 import SmallList from '@/components/SmallList.vue';
+import ScrollList from '@/components/ScrollList.vue';
 
 export default {
     name: 'Main',
@@ -37,6 +38,7 @@ export default {
         ListSection,
         Details,
         SmallList,
+        ScrollList,
     },
     props: {
         movies: Array,
@@ -76,6 +78,10 @@ export default {
                 this.myList.push(obj);
             }
         },
+
+        /**
+         * Remove title from personal list
+         */
         removeFromList(obj){
             if(this.myList.includes(obj)){
                 this.myList.splice(this.myList.indexOf(obj), 1);
