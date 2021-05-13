@@ -45,6 +45,7 @@ export default {
     showMyList(){
       this.viewMy = true;
     },
+
     /**
      * Reset page
      */
@@ -54,6 +55,7 @@ export default {
         this.viewMy = false;
         window.scrollTo(0, 0);
     },
+
     /**
      * Call API for upcoming title
      */
@@ -62,7 +64,7 @@ export default {
         api_key: this.api_key,
       }
       // Call API Upcoming Movies
-      axios.get('https://api.themoviedb.org/3/movie/upcoming', {
+      axios.get(`${this.apiURL}movie/upcoming`, {
         params: apiParams,
       })
       .then(res => {
@@ -81,7 +83,7 @@ export default {
         api_key: this.api_key,
       }
       // Call API Popular Movies
-      axios.get('https://api.themoviedb.org/3/movie/popular', {
+      axios.get(`${this.apiURL}movie/popular`, {
         params: apiParams,
       })
       .then(res => {
@@ -92,7 +94,7 @@ export default {
       });
 
       // Call API Popular TV Shows
-      axios.get('https://api.themoviedb.org/3/tv/popular', {
+      axios.get(`${this.apiURL}tv/popular`, {
         params: apiParams,
       })
       .then(res => {
@@ -112,7 +114,7 @@ export default {
         query: search,
       }
       // Call API Movies
-      axios.get('https://api.themoviedb.org/3/search/movie', {
+      axios.get(`${this.apiURL}search/movie`, {
         params: apiParams,
       })
       .then(res => {
@@ -123,7 +125,7 @@ export default {
       });
 
       // Call API TV Shows
-      axios.get('https://api.themoviedb.org/3/search/tv', {
+      axios.get(`${this.apiURL}search/tv`, {
         params: apiParams,
       })
       .then(res => {
