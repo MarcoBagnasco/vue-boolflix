@@ -1,10 +1,13 @@
 <template>
     <div class="list-section">
         <!-- SECTION HEADER -->
-        <div class="flex ai-center">
-            <h2>{{title}}</h2>
-            <!-- Genre Filter -->
-            <GenreFilter @chooseGenre="setGenre"/>
+        <div class="flex ai-center jc-between">
+            <div class="left flex ai-center">
+                <h2>{{title}}</h2>
+                <!-- Genre Filter -->
+                <GenreFilter @chooseGenre="setGenre"/>
+            </div>
+            <div v-show="title != 'My List'" class="results">Results for "{{search}}"</div>
         </div>
 
         <!-- TITLE LIST -->
@@ -15,6 +18,7 @@
                     <Card :info="item" :imgWidth="342" @getInfo="sendInfo"/>
                 </li>
             </ul>
+            
             <div v-show="!arrayList.length">No title for this genre</div>
         </div>
     </div>
@@ -35,6 +39,7 @@ export default {
     props: {
         title: String,
         list: Array,
+        search: String,
     },
     data(){
         return{
@@ -93,6 +98,12 @@ export default {
                     margin: 0 5px;
                 }
             }
+        }
+
+        .results{
+            margin-right: 60px;
+            font-size: 1.2em;
+            font-weight: bold;
         }
     }
 </style>

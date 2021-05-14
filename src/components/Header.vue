@@ -1,10 +1,10 @@
 <template>
     <header class="flex jc-between ai-center">
-        <!-- Logo -->
+        <!-- Logo and Menu-->
         <nav class="flex ai-center">
             <img src="https://fontmeme.com/permalink/210511/c072857f28ffed69c9266a55183f4c20.png" alt="logo">
-            <div class="home" @click="$emit('clear')">Home</div>
-            <div class="my-list" @click="$emit('showMy')">My List</div>
+            <div class="home pointer" @click="$emit('clear')">Home</div>
+            <div class="my-list pointer" @click="$emit('showMy')">My List</div>
         </nav>
         <!-- Search Input -->
         <Search @searching="setSearch"/>
@@ -56,7 +56,6 @@ export default {
         .home,
         .my-list{
             margin: 0 15px;
-            cursor: pointer;
         }
     }
 </style>

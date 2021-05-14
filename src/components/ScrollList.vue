@@ -6,7 +6,7 @@
             <!-- Genre Filter -->
             <GenreFilter @chooseGenre="setGenre"/>
             <!-- Scroll Button -->
-            <span class="scroll" v-show="scrollID === 0" @click="scroll">Start Scroll</span>
+            <span class="scroll pointer" v-show="scrollID === 0" @click="scroll">Start Scroll</span>
         </div>
 
         <!-- TITLE LIST -->
@@ -17,6 +17,7 @@
                     <Card :info="item" :imgWidth="342" @getInfo="sendInfo"/>
                 </li>
             </ul>
+
             <div v-show="!arrayList.length">No title for this genre</div>
         </div>
     </div>
@@ -117,13 +118,13 @@ export default {
 
         .scroll{
             margin-left: 20px;
-            cursor: pointer;
             transition: color .2s;
 
             &:hover{
                 color: $red-brand;
             }
         }
+        
         .list-box{
             overflow-x: auto;
 

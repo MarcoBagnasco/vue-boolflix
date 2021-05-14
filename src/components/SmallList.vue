@@ -15,6 +15,7 @@
                         <Card :info="item" :imgWidth="154" @getInfo="sendInfo"/>
                 </li>
             </ul>
+            
             <div v-show="!arrayList.length">No title for this genre</div>
         </div>
     </div>

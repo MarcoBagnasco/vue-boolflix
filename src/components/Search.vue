@@ -1,9 +1,13 @@
 <template>
     <form>
-        <button class="search-btn" type="submit" @click.prevent="$emit('searching', searchText)">
+        <!-- Search Button -->
+        <button class="search-btn pointer" type="submit" @click.prevent="$emit('searching', searchText)">
             <i class="fas fa-search"></i>
         </button>
-        <input v-model="searchText" type="text" name="search" id="search" placeholder="Search Title">
+        <!-- Input -->
+        <input v-model.trim="searchText" type="text" name="search" id="search" placeholder="Search Title" @keyup="$emit('searching', searchText)">
+        <!-- Cancel Field -->
+        <i class="fas fa-times cancel pointer" @click="searchText = ''"></i>
     </form>
 </template>
 
@@ -22,6 +26,10 @@ export default {
 // SCSS VARIABLES
 @import '../Styles/variables.scss';
 
+    form{
+        position: relative;
+    }
+
     input[type="text"],
     .search-btn{
         height: 2rem;
@@ -39,13 +47,20 @@ export default {
     }
     .search-btn{
         border-right: 0;
-        cursor: pointer;
     }
+
     input[type="text"]{
+        padding-right: 30px;
         border-left: 0;
 
         &::placeholder{
             color: #888;
         }
+    }
+    
+    .cancel{
+        position: absolute;
+        top: 7px;
+        right: 10px;
     }
 </style>

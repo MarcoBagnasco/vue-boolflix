@@ -2,7 +2,7 @@
     <div class="details flex jc-center ai-center">
         <div class="details-box">
             <!-- Exit Icon -->
-            <i class="fas fa-times exit" @click="$emit('close')"></i>
+            <i class="fas fa-times exit pointer" @click="$emit('close')"></i>
 
             <!-- Info-Box -->
             <div class="info-box flex ai-start">
@@ -16,14 +16,16 @@
             <!-- Trailer -->
             <div class="flex ai-center">
                 <div class="trailer" v-if="videos.length !== 0">
-                    Watch the <span @click="watchTrailer">Trailer</span>
+                    Watch the <span class="pointer" @click="watchTrailer">Trailer</span>
                     <!-- Video -->
                     <div v-show="showVideo" class="video-box flex jc-center ai-center" @click="watchTrailer">
                         <Video :title="videos[0].key" />
                     </div>
                 </div>
-                <div v-if="!my.includes(details)" class="add-to-list" @click="$emit('toAdding', details)"><i class="fas fa-plus"></i> Add to My List</div>
-                <div v-else class="add-to-list" @click="$emit('toRemove', details)"><i class="fas fa-minus"></i> Remove from My List</div>
+
+                <!-- Add/Remove My List -->
+                <div v-if="!my.includes(details)" class="add-to-list pointer" @click="$emit('toAdding', details)"><i class="fas fa-plus"></i> Add to My List</div>
+                <div v-else class="add-to-list pointer" @click="$emit('toRemove', details)"><i class="fas fa-minus"></i> Remove from My List</div>
             </div>
 
             <!-- Reviews -->
@@ -34,6 +36,7 @@
                     {{item.content}}
                 </div>
             </div>
+
             <!-- Images -->
             <h2>Images</h2>
             <div class="images">
@@ -186,7 +189,6 @@ export default {
                 right: 15px;
                 font-size: 1.4rem;
                 color: rgba(#fff, .4);
-                cursor: pointer;
                 transition: color .2s;
 
                 &:hover{
@@ -208,7 +210,6 @@ export default {
                 span{
                     color: $red-brand;
                     text-decoration: underline;
-                    cursor: pointer;
                 }
                 
                 .video-box{
@@ -224,7 +225,6 @@ export default {
             // Add List
             .add-to-list{
                 margin-top: 10px;
-                cursor: pointer;
                 transition: color .3s;
 
                 &:hover{
@@ -236,24 +236,27 @@ export default {
             h2{
                 margin-top: 20px;
             }
+
             .reviews,
             .images{
                 height: 200px;
                 margin: 10px;
                 overflow-y: auto;
+
                 h4{
                     margin-bottom: 5px;
                     font-size: 1.3rem;
                     text-decoration: underline;
                 }
+
                 .review{
                     margin: 15px 5px;
                 }
+
                 img{
                     margin: 10px;
                 }
             }
         }
-
     }
 </style>

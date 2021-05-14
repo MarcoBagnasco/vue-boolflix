@@ -1,24 +1,26 @@
 <template>
     <main>
+        <!-- NO RESULTS -->
+        <div class="no-results" v-if="(!movies.length && !tv.length) && !showMy && search.length">No results match your search</div>
+
         <!-- UPCOMING -->
-        <ScrollList v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Upcoming Movies'" :list="upcome" @getDetails="showDetails"/>
+        <ScrollList v-show="(!movies.length && !tv.length) && !showMy && !search.length" :title="'Upcoming Movies'" :list="upcome" @getDetails="showDetails"/>
 
         <!-- POPULAR MOVIE -->
-        <SmallList v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Popular Movies'" :list="popMovies" @getDetails="showDetails"/>
+        <SmallList v-show="(!movies.length && !tv.length) && !showMy && !search.length" :title="'Popular Movies'" :list="popMovies" @getDetails="showDetails"/>
 
         <!-- POPULAR TV -->
-        <SmallList v-show="(movies.length === 0 && tv.length === 0) && !showMy" :title="'Popular TV Shows'" :list="popTV" @getDetails="showDetails"/>
+        <SmallList v-show="(!movies.length && !tv.length) && !showMy && !search.length" :title="'Popular TV Shows'" :list="popTV" @getDetails="showDetails"/>
 
-        <!-- MOVIES LIST -->
-        <ListSection v-show="(movies.length != 0) && !showMy" :title="'Movies'" :list="movies" @getDetails="showDetails"/>
-
-        <!-- TV LIST -->
-        <ListSection v-show="(tv.length != 0) && !showMy" :title="'TV Shows'" :list="tv" @getDetails="showDetails"/>
+        <!-- SEARCH RESULTS -->
+        <!-- Movies List -->
+        <ListSection v-show="(movies.length) && !showMy && search.length" :title="'Movies'" :list="movies" :search="search" @getDetails="showDetails"/>
+        <!-- TV List -->
+        <ListSection v-show="(tv.length) && !showMy && search.length" :title="'TV Shows'" :list="tv" :search="search" @getDetails="showDetails"/>
 
         <!-- MY LIST -->
         <ListSection v-show="showMy" :title="'My List'" :list="myList" @getDetails="showDetails"/>
         <div class="no-title" v-show="myList.length === 0 && showMy">No title in the list</div>
-
 
         <!-- DETAILS -->
         <Details v-if="detailsVisibility" :details="details" @close="closeDetails"  :my="myList" @toAdding="addToList" @toRemove="removeFromList"/>
@@ -41,6 +43,7 @@ export default {
         ScrollList,
     },
     props: {
+        search: String,
         movies: Array,
         tv: Array,
         popMovies: Array,
@@ -70,6 +73,7 @@ export default {
         closeDetails(){
             this.detailsVisibility = false;
         },
+        
         /**
          * Add title to personal list
          */
@@ -98,6 +102,7 @@ export default {
     main{
         padding: 0 20px;
 
+        .no-results,
         .no-title{
             font-size: 1.5em;
             text-align: center;

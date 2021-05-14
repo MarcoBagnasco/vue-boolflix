@@ -1,15 +1,15 @@
 <template>
     <div class="genre">
         Filter by Genre
-        <i v-if="!open" class="fas fa-chevron-down" @click="openMenu"></i>
-        <i v-else class="fas fa-chevron-up" @click="openMenu"></i>
+        <i v-if="!open" class="fas fa-chevron-down pointer" @click="openMenu"></i>
+        <i v-else class="fas fa-chevron-up pointer" @click="openMenu"></i>
         <!-- Genre Menu -->
         <ul v-show="open" class="genre-list flex">
-            <li @click="takeGenre('', null); openMenu()">All</li>
-            <li v-for="(item, index) in genres" :key="index" @click="takeGenre(item.name, item.id); openMenu()">{{item.name}}</li>
+            <li class="pointer" @click="takeGenre('', null); openMenu()">All</li>
+            <li class="pointer" v-for="(item, index) in genres" :key="index" @click="takeGenre(item.name, item.id); openMenu()">{{item.name}}</li>
         </ul>
         <!-- Genre Name -->
-        <span v-show="genreName.length" class="genre-name">{{genreName}}<i class="fas fa-times-circle delete" @click="takeGenre('', null)"></i></span>
+        <span v-show="genreName.length" class="genre-name">{{genreName}}<i class="fas fa-times-circle delete pointer" @click="takeGenre('', null)"></i></span>
     </div>
 </template> 
 
@@ -79,8 +79,8 @@ export default {
 
         i{
             margin-left: 10px;
-            cursor: pointer;
         }
+
         .genre-list{
             flex-wrap: wrap;
             position: absolute;
@@ -94,7 +94,6 @@ export default {
             li{
                 width: calc(50% - 10px);
                 margin-bottom: 5px;
-                cursor: pointer;
             }
         }
 
@@ -106,6 +105,7 @@ export default {
                 bottom: 10px;
                 font-size: 0.6em;
                 transition: color .3s;
+                
                 &:hover{
                     color: $red-brand
                 }

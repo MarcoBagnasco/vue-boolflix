@@ -1,5 +1,5 @@
 <template>
-    <div class="card" @click="$emit('getInfo', info)">
+    <div class="card pointer" @click="$emit('getInfo', info)">
         <!-- Poster -->
         <img v-if="info.poster_path" :src="`https://image.tmdb.org/t/p/w${imgWidth}${info.poster_path}`" :alt="info.original_title">
         <img v-else src="../assets/img/img_notfound.jpg" alt="image not found">
@@ -34,7 +34,6 @@ export default {
         position: relative;
         width: 100%;
         color: #fff;
-        cursor: pointer;
 
         &:hover .info{
             opacity: 1;

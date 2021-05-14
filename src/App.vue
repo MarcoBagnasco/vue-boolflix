@@ -4,7 +4,7 @@
     <Header @search="searchTitle" @clear="clearPage" @showMy="showMyList"/>
 
     <!-- APP MAIN -->
-    <Main :movies="moviesList" :tv="tvList" :popMovies="popularMovies" :popTV="popularTV" :upcome="up" :showMy="viewMy"/>
+    <Main :search="searchString" :movies="moviesList" :tv="tvList" :popMovies="popularMovies" :popTV="popularTV" :upcome="up" :showMy="viewMy"/>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
       api_key: 'dabed2596a83196385f10dd2ac69a20d',
       moviesList: [],
       tvList: [],
+      searchString: '',
       popularMovies: [],
       popularTV: [],
       up: [],
@@ -50,6 +51,7 @@ export default {
      * Reset page
      */
     clearPage(){
+        this.searchString = '',
         this.moviesList = [];
         this.tvList = [];
         this.viewMy = false;
@@ -57,13 +59,13 @@ export default {
     },
 
     /**
-     * Call API for upcoming title
+     * Call API for upcoming movie
      */
     upcoming(){
       const apiParams = {
         api_key: this.api_key,
       }
-      // Call API Upcoming Movies
+      
       axios.get(`${this.apiURL}movie/upcoming`, {
         params: apiParams,
       })
@@ -106,7 +108,7 @@ export default {
     },
 
     /**
-     * Call API based on search
+     * Call API based on search and set searchString
      */
     searchTitle(search){
       const apiParams = {
@@ -136,6 +138,7 @@ export default {
       });
 
       this.viewMy = false;
+      this.searchString = search;
     }
   }
 }
